@@ -8,47 +8,70 @@ import {
   StyleSheet,
   TextInput,
   Dimensions,
+  Pressable,
 } from "react-native";
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import AppInput from "../components/AppInput";
+import AppButton from "../components/AppButton";
+import { windowHeight, windowWidth } from "../utils/Dimension";
 const SigninScreen = ({ navigation }) => {
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar translucent backgroundColor="transparent" style={"light"}/>
       <ImageBackground
         source={require("../assets/transport.jpg")}
         style={styles.container}
       >
         <View style={styles.loginForm}>
-          <Text>Sign In</Text>
-          <TextInput placeholder="Email" />
-          <TextInput placeholder="Password" />
-          <Button
-            onPress={() => navigation.navigate("Signup")}
-            title="Sign Up"
-          />
+          <Text style={styles.head}>Sign In</Text>
+          <View>
+            <AppInput placeholder="Email" secureTextEntry={false}/>
+            <AppInput
+              placeholder="Password"
+              secureTextEntry={true}
+            />
+          </View>
+          <View style={styles.SigninText}>
+            <Text>Don't have an account?</Text>
+            <Pressable onPress={() => navigation.navigate("Signup")}>
+              <Text style={styles.SigninButton}>Sign up</Text>
+            </Pressable>
+          </View>
+          <AppButton onPress={() => navigation.push("Tabs")} title="Sign In" />
         </View>
       </ImageBackground>
     </>
   );
 };
+export default SigninScreen;
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection : "column",
     justifyContent: "center",
     alignItems: "center",
     width: windowWidth,
   },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "cover",
+  head: {
+    fontSize: 40,
   },
   loginForm: {
     height: windowHeight / 1.5,
-    width: windowWidth / 2,
-    backgroundColor: "white",
+    backgroundColor: "transparent",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  SigninText: {
+    display: "flex",
+    flexDirection: "row",
+    width: windowWidth,
+    justifyContent: "center",
+    alignItems: "center",
+    fontWeight: "bold",
+  },
+  SigninButton: {
+    fontSize: 20,
+    color: "blue",
+    fontWeight: "bold",
+    marginLeft: 10,
   },
 });
-export default SigninScreen;
