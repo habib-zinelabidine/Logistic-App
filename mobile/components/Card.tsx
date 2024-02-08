@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
-import { windowHeight, windowWidth } from "../utils/Dimension";
+import { windowWidth } from "../utils/Dimension";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Card = () => {
   return (
