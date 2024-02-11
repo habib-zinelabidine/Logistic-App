@@ -6,35 +6,13 @@ import Drivers from "../screens/Drivers";
 import Settings from "../screens/Settings";
 import Posts from "../screens/Posts";
 import { StatusBar } from "expo-status-bar";
-import { Appbar } from "react-native-paper";
+
 const Tab = createBottomTabNavigator();
 
-export const CustomTabBarBottom = ({ children, onPress }: any) => (
-  <TouchableOpacity
-    style={{
-      top: -30,
-      justifyContent: "center",
-      alignItems: "center",
-      ...styles.shadow,
-    }}
-    onPress={onPress}
-  >
-    <View
-      style={{
-        width: 60,
-        height: 60,
-        borderRadius: 35,
-        backgroundColor: "#feb940",
-      }}
-    >
-      {children}
-    </View>
-  </TouchableOpacity>
-);
-const Tabs = () => {
-  const handleHomePress = () => {
-    console.log('Home button clicked!');
-    // Add logic for Home button click
+
+const Tabs = ({ route }) => {
+  const handlePostPress = () => {
+    console.log("Clicked on Post button in screen:", route.name);
   };
   return (
     <View style={styles.container}>
@@ -59,7 +37,6 @@ const Tabs = () => {
           name="Home"
           component={HomePage}
           options={{
-            
             tabBarIcon: ({ focused }) => (
               <View
                 style={{
@@ -120,29 +97,37 @@ const Tabs = () => {
             ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Post"
           component={Posts}
           options={{
-            tabBarIcon: () => (
-              <Image
-                source={require("../assets/icons/plus.png")}
-                resizeMode="contain"
-                style={{
-                  width: 25,
-                  height: 25,
-                }}
+            tabBarButton: (props) => (
+              <CustomTabBarBottom
+                {...props}
+                onPress={() => handlePostPress()}
+
               />
             ),
-            tabBarButton: (props) => <CustomTabBarBottom {...props} onPress={console.log("clicked")
-            } />,
+            tabBarIcon: () => (
+              <TouchableOpacity
+                onPress={() => handlePostPress()}
+              >
+                <Image
+                  source={require("../assets/icons/plus.png")}
+                  resizeMode="contain"
+                  style={{
+                    width: 25,
+                    height: 25,
+                  }}
+                />
+              </TouchableOpacity>
+            ),
           }}
-        ></Tab.Screen>
+        /> */}
         <Tab.Screen
           name="Drivers"
           component={Drivers}
           options={{
-
             tabBarIcon: ({ focused }) => (
               <View
                 style={{

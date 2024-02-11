@@ -6,62 +6,74 @@ import { windowHeight, windowWidth } from "../utils/Dimension";
 import Card from "../components/Card";
 import MainContainer from "../components/MainContainer";
 import ShowMapView from "../components/ShowMapView";
-const HomePage = () => {
+import { CustomTabBarBottom } from "../components/CustomTabBarBottom";
+const HomePage = ({navigation}) => {
   const [ListButton, setListButton] = useState(false);
   const [MapButton, setMapButton] = useState(true);
   const [showView, setshowView] = useState(true);
   return (
-    <MainContainer>
-      <View style={styles.AppBarcontainer}>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-              setListButton(false);
-              setMapButton(true);
-              setshowView(true);
-            }}
-            style={{
-              backgroundColor: ListButton ? "#343b44" : "black",
-              marginLeft: 40,
-              ...styles.button,
-            }}
-          >
-            <Text style={{ color: ListButton ? "gray" : "#feb940" }}>
-              List View
-            </Text>
-          </Button>
-          <Button
-            onPress={() => {
-              setMapButton(false);
-              setListButton(true);
-              setshowView(false);
-            }}
-            style={{
-              backgroundColor: MapButton ? "#343b44" : "black",
-              ...styles.button,
-            }}
-          >
-            <Text style={{ color: MapButton ? "gray" : "#feb940" }}>
-              Map View
-            </Text>
-          </Button>
+    <>
+      <MainContainer>
+        <View style={styles.AppBarcontainer}>
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => {
+                setListButton(false);
+                setMapButton(true);
+                setshowView(true);
+              }}
+              style={{
+                backgroundColor: ListButton ? "#343b44" : "black",
+                marginLeft: 40,
+                ...styles.button,
+              }}
+            >
+              <Text style={{ color: ListButton ? "gray" : "#feb940" }}>
+                List View
+              </Text>
+            </Button>
+            <Button
+              onPress={() => {
+                setMapButton(false);
+                setListButton(true);
+                setshowView(false);
+              }}
+              style={{
+                backgroundColor: MapButton ? "#343b44" : "black",
+                ...styles.button,
+              }}
+            >
+              <Text style={{ color: MapButton ? "gray" : "#feb940" }}>
+                Map View
+              </Text>
+            </Button>
+          </View>
+          <Appbar.Action
+            icon="magnify"
+            onPress={() => {}}
+            iconColor={"white"}
+          />
         </View>
-        <Appbar.Action icon="magnify" onPress={() => {}} iconColor={"white"} />
-      </View>
-      {showView ? (
-        <View style={styles.container}>
-          <ScrollView>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </ScrollView>
-        </View>
-      ) : (
-        <ShowMapView />
-      )}
-    </MainContainer>
+        {showView ? (
+          <View style={styles.container}>
+            <ScrollView>
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+              <Card />
+            </ScrollView>
+          </View>
+        ) : (
+          <ShowMapView />
+        )}
+      </MainContainer>
+      <CustomTabBarBottom
+        onPress={
+          showView ? () => navigation.navigate("Trip") : () => console.log("map")
+        }
+      />
+    </>
   );
 };
 const styles = StyleSheet.create({

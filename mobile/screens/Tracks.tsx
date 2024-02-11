@@ -3,6 +3,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import MainContainer from "../components/MainContainer";
 import InfoCard from "../components/InfoCard";
+import { CustomTabBarBottom } from "../components/CustomTabBarBottom";
 
 const Tracks = () => {
   const tab = [1, 2, 3, 4, 5, 6];
@@ -19,6 +20,8 @@ const Tracks = () => {
           />
         ))}
       </ScrollView>
+      <CustomTabBarBottom />
+
     </MainContainer>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import MapView from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 import { windowHeight, windowWidth } from "../utils/Dimension";
+import { CustomTabBarBottom } from "./CustomTabBarBottom";
 
 export default function ShowMapView() {
   return (

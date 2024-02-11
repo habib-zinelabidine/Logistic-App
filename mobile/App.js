@@ -5,6 +5,7 @@ import SignupScreen from "./screens/SignupScreen";
 import SigninScreen from "./screens/SigninScreen";
 import Tabs from "./navigation/Tabs";
 import { View } from "react-native";
+import Trip from "./screens/Trip";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,11 @@ export default function App() {
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Trip"
+            component={Trip}
             options={{ headerShown: false }}
           />
           <Stack.Screen
